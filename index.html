@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For You ❤️</title>
 
 <style>
@@ -101,6 +102,44 @@ img {
     font-size: 34px;
     color: #ffd700;
     text-shadow: 0 0 15px #ffd700;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    body::before {
+        top: 20px;
+        right: 20px;
+        width: 80px;
+        height: 80px;
+    }
+    
+    .container {
+        margin-top: 80px;
+        padding: 0 20px;
+    }
+    
+    #message {
+        font-size: 20px;
+    }
+    
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin: 8px;
+    }
+    
+    img {
+        width: 120px;
+    }
+    
+    #final {
+        font-size: 18px;
+        padding: 20px;
+    }
+    
+    .glow {
+        font-size: 24px;
+    }
 }
 </style>
 </head>
