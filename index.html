@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+    color: #fff;
+    overflow: hidden;
+}
+
+/* Moon */
+body::before {
+    content: "";
+    position: absolute;
+    top: 50px;
+    right: 80px;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, #fff 20%, #fdd835 60%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(10px);
+}
+
+/* Stars */
+body::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/stardust.png');
+    opacity: 0.4;
+}
+
+/* Floating hearts */
+.heart {
+    position: absolute;
+    color: pink;
+    animation: float 5s linear infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(100vh); opacity: 0; }
+    100% { transform: translateY(-10vh); opacity: 1; }
+}
+
+.container {
+    margin-top: 120px;
+}
+
+#message {
+    font-size: 26px;
+    min-height: 50px;
+    color: #ffd1dc;
+}
+
+button {
+    padding: 12px 28px;
+    margin: 12px;
+    font-size: 18px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+}
+
+#yesBtn {
+    background: linear-gradient(45deg, #ff6a88, #ff99ac);
+    color: white;
+    box-shadow: 0 0 15px #ff6a88;
+}
+
+#noBtn {
+    background: #555;
+    color: white;
+    position: relative;
+}
+
+img {
+    width: 180px;
+    display: none;
+}
+
+#final {
+    display: none;
+    font-size: 22px;
+    padding: 30px;
+    animation: fadeIn 2s ease;
+}
+
+@keyframes fadeIn {
+    from {opacity:0;}
+    to {opacity:1;}
+}
+
+.glow {
+    font-size: 34px;
+    color: #ffd700;
+    text-shadow: 0 0 15px #ffd700;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div id="message"></div>
+
+    <img id="bear" src="https://media.giphy.com/media/ROF8OQvDmxytW/giphy.gif">
+
+    <br>
+
+    <button id="yesBtn">Yes ❤️</button>
+    <button id="noBtn">No 😔</button>
+</div>
+
+<div id="final">
+    <div class="glow">🌙✨ Eid Mubarak Maryam ✨🌙</div><br><br>
+
+    From the moment you came into my life…<br>
+    everything started feeling special 💖<br><br>
+
+    You’re not just someone I like…<br>
+    you’re someone I truly care about ❤️<br><br>
+
+    On this Eid… I don’t want anything else,<br>
+    I just want you… your smile… your presence 💫<br><br>
+
+    If you stay… I promise I’ll always try<br>
+    to make you feel loved 🤍<br><br>
+
+    💞 Always yours 💞
+</div>
+
+<audio id="song" loop>
+    <source src="your-song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const text = "Before Eid begins… Maryam, there’s something in my heart I can’t hide anymore 🌙💖";
+let i = 0;
+
+function typeEffect() {
+    if (i < text.length) {
+        document.getElementById("message").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeEffect, 50);
+    }
+}
+typeEffect();
+
+// Floating hearts
+setInterval(() => {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 5000);
+}, 500);
+
+let noCount = 0;
+
+const steps = [
+    { text: "I didn’t want to say it like this… but I really like you 😔", bear: false },
+    { text: "You’ve become really special to me 🥺", bear: true },
+    { text: "You make my days better without even trying ❤️", bear: false },
+    { text: "If you say no… I’ll smile… but it will hurt 💔", bear: true }
+];
+
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const bear = document.getElementById("bear");
+const final = document.getElementById("final");
+const song = document.getElementById("song");
+
+noBtn.addEventListener("click", () => {
+    if (noCount < steps.length) {
+        document.getElementById("message").innerText = steps[noCount].text;
+        bear.style.display = steps[noCount].bear ? "block" : "none";
+        noCount++;
+    } else {
+        noBtn.style.position = "absolute";
+        noBtn.style.top = Math.random() * window.innerHeight + "px";
+        noBtn.style.left = Math.random() * window.innerWidth + "px";
+    }
+});
+
+yesBtn.addEventListener("click", () => {
+    document.querySelector(".container").style.display = "none";
+    final.style.display = "block";
+    song.play();
+});
+</script>
+
+</body>
+</html>
